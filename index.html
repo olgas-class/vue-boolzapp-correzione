@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+    />
+    <!-- Custom style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Vue JS -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Luxon CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.3/build/global/luxon.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app" class="app-wrapper">
+      <div class="container">
+        <!-- Left col sidebar -->
+        <div class="col left">
+          <!-- col header -->
+          <header class="header">
+            <div class="header__user">
+              <img class="avatar" src="img/avatar_io.jpg" alt="User avatar" />
+              <div class="header__text">
+                <h3>Olga</h3>
+              </div>
+            </div>
+            <div class="header__actions">
+              <i class="fas fa-circle-notch"></i>
+              <i class="fas fa-comment-alt"></i>
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+          </header>
+          <!-- /col header -->
+
+          <!-- Notifications -->
+          <section class="notifications"></section>
+          <!-- /Notifications -->
+
+          <!-- Search -->
+          <section class="search-section">
+            <div class="search">
+              <label for="search-input" class="search__label">
+                <span class="sr-only">Inizia la ricerca</span>
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </label>
+              <input type="text" class="search__input" id="search-input" />
+            </div>
+          </section>
+          <!-- /Search -->
+
+          <!-- Contacts list -->
+          <section class="contacts-list">
+            <!-- Contact item -->
+            <div class="contact" v-for="contact in contacts">
+              <div class="contact__image">
+                <img
+                  class="avatar"
+                  :src="`img/avatar${contact.avatar}.jpg`"
+                  :alt="contact.name"
+                />
+              </div>
+              <div class="contact__text">
+                <div class="contact__user">
+                  <h3>{{ contact.name }}</h3>
+                  <p>Ultimo messaggio</p>
+                </div>
+                <div class="contact__time">
+                  <small>12:00</small>
+                </div>
+              </div>
+            </div>
+            <!-- /Contact item -->
+          </section>
+          <!-- /Contacts list -->
+        </div>
+        <!-- /Left col sidebar -->
+
+        <!-- Right col main -->
+        <div class="col right">
+          <!-- col header -->
+          <header class="header">
+            <div class="header__user">
+              <img class="avatar" :src="`img/avatar${contacts[activeContact].avatar}.jpg`" alt="User avatar" />
+              <div class="header__text">
+                <h3>{{ contacts[activeContact].name }}</h3>
+                <p>Ultimo accesso</p>
+              </div>
+            </div>
+            <div class="header__actions">
+              <i class="fas fa-circle-notch"></i>
+              <i class="fas fa-comment-alt"></i>
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+          </header>
+          <!-- /col header -->
+
+          <!-- Messages -->
+          <section class="messages-section">
+            <!-- Single Message -->
+            <div class="message message--sent">
+              <div class="message__box">
+                <div class="message__text">
+                  Ciao, come stai?
+                  <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quam, sunt dolorum itaque id placeat, neque, natus nostrum sapiente rem ipsa voluptates est quibusdam dolor hic quisquam doloribus modi ullam? -->
+                </div>
+                <div class="message__time">
+                  <small> 12:00 </small>
+                </div>
+              </div>
+            </div>
+            <!-- /Single Message -->
+
+            <!-- Single Message -->
+            <div class="message message--recieved">
+              <div class="message__box">
+                <div class="message__text">
+                  Ciao, come stai?
+                </div>
+                <div class="message__time">
+                  <small> 12:00 </small>
+                </div>
+              </div>
+            </div>
+            <!-- /Single Message -->
+          </section>
+          <!-- /Messages -->
+
+          <!-- New message -->
+          <footer class="new-message"></footer>
+          <!-- /New message -->
+        </div>
+        <!-- /Right col main -->
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
