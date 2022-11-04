@@ -57,7 +57,7 @@
                 <span class="sr-only">Inizia la ricerca</span>
                 <i class="fa fa-search" aria-hidden="true"></i>
               </label>
-              <input type="text" class="search__input" id="search-input" />
+              <input type="text" class="search__input" id="search-input" @keyup="filterContacts"/>
             </div>
           </section>
           <!-- /Search -->
@@ -65,7 +65,7 @@
           <!-- Contacts list -->
           <section class="contacts-list">
             <!-- Contact item -->
-            <div class="contact" v-for="contact in contacts">
+            <div class="contact" v-for="(contact, index) in contacts" @click="changeContact(index)">
               <div class="contact__image">
                 <img
                   class="avatar"
@@ -94,7 +94,11 @@
           <!-- col header -->
           <header class="header">
             <div class="header__user">
-              <img class="avatar" :src="`img/avatar${contacts[activeContact].avatar}.jpg`" alt="User avatar" />
+              <img
+                class="avatar"
+                :src="`img/avatar${contacts[activeContact].avatar}.jpg`"
+                alt="User avatar"
+              />
               <div class="header__text">
                 <h3>{{ contacts[activeContact].name }}</h3>
                 <p>Ultimo accesso</p>
@@ -111,27 +115,15 @@
           <!-- Messages -->
           <section class="messages-section">
             <!-- Single Message -->
-            <div class="message message--sent">
+            <div
+              v-for="(messageObj, index) in contacts[activeContact].messages"
+              class="message"
+              :class="`message--${messageObj.status}`"
+            >
               <div class="message__box">
-                <div class="message__text">
-                  Ciao, come stai?
-                  <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quam, sunt dolorum itaque id placeat, neque, natus nostrum sapiente rem ipsa voluptates est quibusdam dolor hic quisquam doloribus modi ullam? -->
-                </div>
+                <div class="message__text">{{ messageObj.message }}</div>
                 <div class="message__time">
-                  <small> 12:00 </small>
-                </div>
-              </div>
-            </div>
-            <!-- /Single Message -->
-
-            <!-- Single Message -->
-            <div class="message message--recieved">
-              <div class="message__box">
-                <div class="message__text">
-                  Ciao, come stai?
-                </div>
-                <div class="message__time">
-                  <small> 12:00 </small>
+                  <small> {{ messageObj.date }} </small>
                 </div>
               </div>
             </div>
@@ -140,7 +132,11 @@
           <!-- /Messages -->
 
           <!-- New message -->
-          <footer class="new-message"></footer>
+          <footer class="new-message">
+            <div class="new-message__input">
+              <input type="text" v-model.trim="newMessage" @keyup.enter="addMessage">
+            </div>
+          </footer>
           <!-- /New message -->
         </div>
         <!-- /Right col main -->

@@ -4,7 +4,8 @@ const dt = luxon.DateTime;
 createApp({
   data() {
     return {
-      activeContact: 2,
+      activeContact: 0,
+      newMessage: "",
       contacts: [
         {
           name: "Michele",
@@ -93,7 +94,67 @@ createApp({
     };
   },
   created() {
-    const now = dt.now().setLocale('it').toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
-    console.log(now);
-  }
+    // const now = dt
+    //   .now()
+    //   .setLocale("it")
+    //   .toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
+    // console.log(now);
+  },
+  methods: {
+    changeContact(index) {
+      this.activeContact = index;
+    },
+    addMessage() {
+      // this.activeContactBot = this.activeContact;
+      const activeContactBot = this.activeContact;
+      // SE il messaggio non è stringa vuota
+      if (this.newMessage !== "") {
+        // Accedere ai messaggi del contatto corrente
+        const messagesArray = this.contacts[this.activeContact].messages;
+        // Creare un nuovo oggetto messaggio
+        const newMessageObj = {
+          date: this.generateDateTime(),
+          message: this.newMessage,
+          status: "sent",
+        };
+        // Pushare questo oggetto nell'array di messaggi
+        messagesArray.push(newMessageObj);
+        // Svuotare l'input
+        this.newMessage = "";
+
+        // Set del timer per la risposta
+        // setTimeout(this.recieveResponse, 1000);
+        setTimeout(() => {
+          console.log(this.activeContact, activeContactBot);
+          const newMessageObj = {
+            date: this.generateDateTime(),
+            message: "ok",
+            status: "received",
+          };
+          this.contacts[activeContactBot].messages.push(newMessageObj);
+        }, 1000);
+      }
+    },
+    // Metodo separato per messaggio ricevuto
+    // recieveResponse() {
+    //   // Creare un nuovo messaggio
+    //   const newMessageObj = {
+    //     date: this.generateDateTime(),
+    //     message: "ok",
+    //     status: "received",
+    //   };
+    //   // Accedere ai messaggi del contatto corrente
+    //   // pushare il messaggio nell'array
+    //   this.contacts[this.activeContactBot].messages.push(newMessageObj);
+    // },
+    generateDateTime() {
+      return dt
+        .now()
+        .setLocale("it")
+        .toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
+    },
+    filterContacts() {
+      console.log('filtra');
+    }
+  },
 }).mount("#app");

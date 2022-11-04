@@ -223,4 +223,16 @@ img.avatar {
     height: 70px;
     width: 100%;
     background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-message__input {
+    width: 70%;
+}
+
+.new-message__input input {
+    width: 100%;
+    padding: .6rem .3rem;
 }
