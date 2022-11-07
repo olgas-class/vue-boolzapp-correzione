@@ -6,6 +6,7 @@ createApp({
     return {
       activeContact: 0,
       newMessage: "",
+      searchKey: "",
       contacts: [
         {
           name: "Michele",
@@ -100,6 +101,11 @@ createApp({
     //   .toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
     // console.log(now);
   },
+  computed: {
+    currentContact() {
+      return this.contacts[this.activeContact];
+    },
+  },
   methods: {
     changeContact(index) {
       this.activeContact = index;
@@ -110,7 +116,7 @@ createApp({
       // SE il messaggio non è stringa vuota
       if (this.newMessage !== "") {
         // Accedere ai messaggi del contatto corrente
-        const messagesArray = this.contacts[this.activeContact].messages;
+        const messagesArray = this.contacts[activeContactBot].messages;
         // Creare un nuovo oggetto messaggio
         const newMessageObj = {
           date: this.generateDateTime(),
@@ -154,7 +160,19 @@ createApp({
         .toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
     },
     filterContacts() {
-      console.log('filtra');
-    }
+      // Per ogni contatto
+      //  controllare se il nome del contatto contiene la chiave di ricerca, allora mettere visible a true
+      // altrimenti mettere visible a false
+      this.contacts.forEach((contact) => {
+        // if (contact.name.toLowerCase().includes(this.searchKey.toLowerCase())) {
+        //   contact.visible = true;
+        // } else {
+        //   contact.visible = false;
+        // }
+        contact.visible = contact.name
+          .toLowerCase()
+          .includes(this.searchKey.toLowerCase()); // ---> true / false
+      });
+    },
   },
 }).mount("#app");
