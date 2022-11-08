@@ -7,6 +7,10 @@ createApp({
       activeContact: 0,
       newMessage: "",
       searchKey: "",
+      activeMessage: {
+        messageIndex: null,
+        visible: null,
+      },
       contacts: [
         {
           name: "Michele",
@@ -109,6 +113,7 @@ createApp({
   methods: {
     changeContact(index) {
       this.activeContact = index;
+      this.resetMessageMenu();
     },
     addMessage() {
       // this.activeContactBot = this.activeContact;
@@ -173,6 +178,35 @@ createApp({
           .toLowerCase()
           .includes(this.searchKey.toLowerCase()); // ---> true / false
       });
+    },
+    toggleMessageMenu(index) {
+      // Se clicco su un messaggio, il menu viene visualizzato
+      // Se clicco di nuovo sullo stesso messaggio si nasconde
+      // altrimenti se clicco su un'altro messaggio
+      // Si nasconde dal messaggio presende e si visualizza nel messaggio cliccato
+      if (index === this.activeMessage.messageIndex) {
+        // caso click sullo stesso messaggio
+        this.activeMessage.visible = !this.activeMessage.visible;
+      } else {
+        //  clicco su un messaggio diverso
+        this.activeMessage.messageIndex = index;
+        this.activeMessage.visible = true;
+      }
+    },
+    resetMessageMenu() {
+      this.activeMessage.messageIndex = null;
+      this.activeMessage.visible = null;
+    },
+    deleteMessage(index) {
+      const selectedContact = this.contacts[this.activeContact];
+      selectedContact.messages.splice(index, 1);
+      this.resetMessageMenu();
+    },
+    getLastMessage(contactIndex) {
+      const contactMessages = this.contacts[contactIndex].messages;
+      return contactMessages.length === 0
+        ? { message: "nessun messaggio", date: "" }
+        : contactMessages[contactMessages.length - 1];
     },
   },
 }).mount("#app");

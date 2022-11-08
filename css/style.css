@@ -66,173 +66,196 @@ img {
 }
 
 .col {
-    height: 100%;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
 }
 
 .col.left {
-    width: 35%;
+  width: 35%;
 }
 
 .col.right {
-    width: 65%;
+  width: 65%;
 }
 
 /* Helper classes */
 
 img.avatar {
-    width: 50px;
-    border-radius: 50%;
+  width: 50px;
+  border-radius: 50%;
 }
 
 .sr-only {
-    display: none;
+  display: none;
 }
 
 /* HEADER */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-    width: 100%;
-    background-color: var(--header-bg-color);
-    padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  background-color: var(--header-bg-color);
+  padding: 0 1rem;
 }
 
 .header__user {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .header__actions {
-    color: var(--icons-color);
+  color: var(--icons-color);
 }
 
 .header__actions i {
-    margin: 0 .5rem;
+  margin: 0 0.5rem;
 }
 
 /* NOTIFICATIONS */
 .notifications {
-    height: 60px;
-    width: 100%;
-    background-color: pink;
+  height: 60px;
+  width: 100%;
+  background-color: pink;
 }
 
 /* SEARCH */
 .search-section {
-    background-color: var(--search-text-color);
-    padding: .5rem;
+  background-color: var(--search-text-color);
+  padding: 0.5rem;
 }
 
 .search {
-   width: 90%;
-   margin: auto;
-   display: flex;
+  width: 90%;
+  margin: auto;
+  display: flex;
 }
 
 .search__label {
-    background-color: white;
-    padding: .5rem .8rem;
-    border-color: gray;
-    border-style: solid;
-    border-width: 1px 0px 1px 1px;
-    border-radius: 5px 0px 0px 5px;
+  background-color: white;
+  padding: 0.5rem 0.8rem;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px 0px 1px 1px;
+  border-radius: 5px 0px 0px 5px;
 }
 
 .search__input {
-    background-color: white;
-    flex-grow: 1;
-    border-color: gray;
-    border-style: solid;
-    border-width: 1px 1px 1px 0px;
-    border-radius: 0px 5px 5px 0px;
+  background-color: white;
+  flex-grow: 1;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px 1px 1px 0px;
+  border-radius: 0px 5px 5px 0px;
 }
 
 /* CONTACTS LIST */
 .contacts-list {
-    width: 100%;
-    flex-grow: 1;
-    overflow-y: scroll;
-    background-color: white;
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: scroll;
+  background-color: white;
 }
 
 .contact {
-    display: flex;
-    padding: .5rem 1rem;
+  display: flex;
+  padding: 0.5rem 1rem;
 }
 
 .contact:not(:last-child) {
-    border-bottom: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
 
 .contact__text {
-    display: flex;
-    justify-content: space-between;
-    flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
 }
-
 
 /* MESSAGES */
 .messages-section {
-    flex-grow: 1;
-    width: 100%;
-    background-image: url("../img/mine.jpg");
-    padding-top: 2rem;
+  flex-grow: 1;
+  width: 100%;
+  background-image: url("../img/mine.jpg");
+  padding-top: 2rem;
 }
 
 .message {
-    display: flex;
-    padding: .5rem 1rem;
+  display: flex;
+  padding: 0.5rem 1rem;
 }
 
 .message--sent {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .message--recieved {
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .message__box {
-    background-color: white;
-    min-width: 250px;
-    max-width: 60%;
-    padding: .5rem;
-    border-radius: 10px;
+  position: relative;
+  background-color: white;
+  min-width: 250px;
+  max-width: 60%;
+  padding: 0.5rem;
+  border-radius: 10px;
 }
 
 .message--sent .message__box {
-    background-color: var(--sent-message-bg);
+  background-color: var(--sent-message-bg);
 }
 
 .message--recieved .message__box {
-    background-color: white;
+  background-color: white;
 }
 
 .message__time {
-    text-align: right;
-    font-size: .6rem;
+  text-align: right;
+  font-size: 0.6rem;
+}
+
+.message__text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.message__actions {
+  position: absolute;
+  top: 80%;
+  right: 0;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
+.message__actions ul {
+  list-style: none;
+}
+
+.message__actions ul li {
+  cursor: pointer;
 }
 
 /* NEW MESSAGE FOOTER */
 .new-message {
-    height: 70px;
-    width: 100%;
-    background-color: lightgray;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 70px;
+  width: 100%;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .new-message__input {
-    width: 70%;
+  width: 70%;
 }
 
 .new-message__input input {
-    width: 100%;
-    padding: .6rem .3rem;
+  width: 100%;
+  padding: 0.6rem 0.3rem;
 }
